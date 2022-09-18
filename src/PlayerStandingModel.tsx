@@ -3,6 +3,7 @@ export default interface PlayerStandingModel {
   Wins: number;
   Losses: number;
   Ties: number;
+  Pct: number;
   PointDiff: number;
   WeekResult: string;
   WeekDiff: number;

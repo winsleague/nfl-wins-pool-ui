@@ -1,6 +1,17 @@
 import React from 'react';
 import useGoogleSheets from 'use-google-sheets';
 import PlayerStandingModel from './PlayerStandingModel';
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 import './App.css';
 
 const App = () => {
@@ -22,35 +33,42 @@ const App = () => {
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <td>Player</td>
-            <td>Record</td>
-            <td>Point Diff</td>
-            <td>Week Result</td>
-          </tr>
-        </thead>
-        <tbody>
-          {standings.map(player => (
-            <StandingsRow key={player.Player} player={player} />
-          ))}
-        </tbody>
-      </table>
+      <TableContainer component={Paper}>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell>Player</TableCell>
+              <TableCell>W</TableCell>
+              <TableCell>L</TableCell>
+              <TableCell>T</TableCell>
+              <TableCell>Pct</TableCell>
+              <TableCell>+/-</TableCell>
+              <TableCell>Week</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {standings.map(player => (
+              <TableRow key={player.Player}>
+                <TableCell>{player.Player}</TableCell>
+                <TableCell>{player.Wins}</TableCell>
+                <TableCell>{player.Losses}</TableCell>
+                <TableCell>{player.Ties}</TableCell>
+                <TableCell>{player.Pct}</TableCell>
+                <TableCell>{player.PointDiff}</TableCell>
+                <TableCell>{player.WeekResult}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-      <br/>
-      <button onClick={refetch}>Refresh</button>
+      <br/><br/>
+      
+      <Box textAlign="center">
+        <Button variant="outlined" onClick={refetch}>Refresh</Button>
+      </Box>
     </>
   );
 };
-
-const StandingsRow = ({ player }: { player: PlayerStandingModel }) => (
-  <tr>
-    <td>{player.Player}</td>
-    <td>{player.Wins}-{player.Losses}-{player.Ties}</td>
-    <td>{player.PointDiff}</td>
-    <td>{player.WeekResult}</td>
-  </tr>
-);
 
 export default App;
