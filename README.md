@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 It also references [UseGoogleSheets](https://github.com/gglukmann/use-google-sheets).
+
+Highlight a specific player by adding `/#?player=Name` to the URL.
 
 ## Available Scripts
 

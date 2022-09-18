@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  useLocation
+} from "react-router-dom";
+
 import useGoogleSheets from 'use-google-sheets';
 import PlayerStandingModel from './PlayerStandingModel';
 
@@ -12,12 +16,21 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 const Standings = () => {
   const { data, loading, error, refetch } = useGoogleSheets({
     apiKey: process.env.REACT_APP_GOOGLE_API_KEY!,
     sheetId: process.env.REACT_APP_GOOGLE_SHEETS_ID!,
     sheetsOptions: [{ id: 'Standings' }],
   });
+
+  let query = useQuery();
+  const playerFocus = query.get("player");
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,7 +59,11 @@ const Standings = () => {
           </TableHead>
           <TableBody>
             {standings.map(player => (
-              <TableRow key={player.Player}>
+              <TableRow 
+                key={player.Player} 
+                selected={(player.Player === playerFocus)}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
                 <TableCell>{player.Player}</TableCell>
                 <TableCell>{player.Wins}</TableCell>
                 <TableCell>{player.Losses}</TableCell>
