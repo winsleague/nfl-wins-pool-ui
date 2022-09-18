@@ -11,4 +11,5 @@ export default interface PlayerStandingModel {
   Last10L: number;
   Last10: string;
   WeekTeams: string;
+  LastUpdate: Date;
 }

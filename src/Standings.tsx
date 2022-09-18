@@ -22,6 +22,11 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
+function diff_minutes(dt2: Date, dt1: Date) {
+  const diff = (dt2.getTime() - dt1.getTime()) / 1000;
+  return Math.abs(Math.round(diff / 60));
+}
+
 const Standings = () => {
   const { data, loading, error, refetch } = useGoogleSheets({
     apiKey: process.env.REACT_APP_GOOGLE_API_KEY!,
@@ -42,6 +47,9 @@ const Standings = () => {
 
   const standings = data[0].data.map(row => row as PlayerStandingModel);
 
+  const lastUpdated = new Date((data[0].data[0] as PlayerStandingModel).LastUpdate);
+  const minutesAgo = diff_minutes(lastUpdated, new Date());
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -55,6 +63,7 @@ const Standings = () => {
               <TableCell>Pct</TableCell>
               <TableCell>+/-</TableCell>
               <TableCell>Week</TableCell>
+              <TableCell>Week Details</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -62,15 +71,15 @@ const Standings = () => {
               <TableRow 
                 key={player.Player} 
                 selected={(player.Player === playerFocus)}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell>{player.Player}</TableCell>
+                <TableCell style={{ position: 'sticky', left: 0, background: '#121212' }}>{player.Player}</TableCell>
                 <TableCell>{player.Wins}</TableCell>
                 <TableCell>{player.Losses}</TableCell>
                 <TableCell>{player.Ties}</TableCell>
                 <TableCell>{player.Pct}</TableCell>
                 <TableCell>{player.PointDiff}</TableCell>
                 <TableCell>{player.WeekResult}</TableCell>
+                <TableCell style={{ whiteSpace: 'nowrap' }}>{player.WeekTeams}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -80,6 +89,10 @@ const Standings = () => {
       <br/><br/>
 
       <Box textAlign="center">
+        <div>
+          Updated {minutesAgo} minutes ago
+        </div>
+        <br/>
         <Button variant="outlined" onClick={refetch}>Refresh</Button>
       </Box>
     </>
