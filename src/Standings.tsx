@@ -60,8 +60,8 @@ const Standings = () => {
               <TableCell>W</TableCell>
               <TableCell>L</TableCell>
               <TableCell>T</TableCell>
-              <TableCell>Pct</TableCell>
               <TableCell>+/-</TableCell>
+              <TableCell>Pct</TableCell>
               <TableCell>Week</TableCell>
               <TableCell>Week Details</TableCell>
             </TableRow>
@@ -76,8 +76,8 @@ const Standings = () => {
                 <TableCell>{player.Wins}</TableCell>
                 <TableCell>{player.Losses}</TableCell>
                 <TableCell>{player.Ties}</TableCell>
-                <TableCell>{player.Pct}</TableCell>
                 <TableCell>{player.PointDiff}</TableCell>
+                <TableCell>{player.Pct}</TableCell>
                 <TableCell>{player.WeekResult}</TableCell>
                 <TableCell style={{ whiteSpace: 'nowrap' }}>{player.WeekTeams}</TableCell>
               </TableRow>
