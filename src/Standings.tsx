@@ -6,6 +6,8 @@ import {
 import useGoogleSheets from 'use-google-sheets';
 import PlayerStandingModel from './PlayerStandingModel';
 
+import poopIcon from './poop-9-32.png';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -25,6 +27,13 @@ function useQuery() {
 function diff_minutes(dt2: Date, dt1: Date) {
   const diff = (dt2.getTime() - dt1.getTime()) / 1000;
   return Math.abs(Math.round(diff / 60));
+}
+
+function playerIcon(weekResult: String) {
+  if (weekResult === "0-4-0")
+    return <div><img src={poopIcon} alt="poop!" /><>&nbsp;</></div>;
+  else
+    return <></>;
 }
 
 const Standings = () => {
@@ -72,7 +81,7 @@ const Standings = () => {
                 key={player.Player} 
                 selected={(player.Player === playerFocus)}
               >
-                <TableCell style={{ position: 'sticky', left: 0, background: '#121212' }}>{player.Player}</TableCell>
+                <TableCell style={{ whiteSpace: 'nowrap', position: 'sticky', left: 0, background: '#121212' }}>{playerIcon(player.WeekResult)}{player.Player}</TableCell>
                 <TableCell>{player.Wins}</TableCell>
                 <TableCell>{player.Losses}</TableCell>
                 <TableCell>{player.Ties}</TableCell>
