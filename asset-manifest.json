@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/nfl-wins-pool-ui/static/css/main.073c9b0a.css",
-    "main.js": "/nfl-wins-pool-ui/static/js/main.7541eac9.js",
+    "main.js": "/nfl-wins-pool-ui/static/js/main.3310f93a.js",
     "static/js/787.5fd1016f.chunk.js": "/nfl-wins-pool-ui/static/js/787.5fd1016f.chunk.js",
     "index.html": "/nfl-wins-pool-ui/index.html",
     "main.073c9b0a.css.map": "/nfl-wins-pool-ui/static/css/main.073c9b0a.css.map",
-    "main.7541eac9.js.map": "/nfl-wins-pool-ui/static/js/main.7541eac9.js.map",
+    "main.3310f93a.js.map": "/nfl-wins-pool-ui/static/js/main.3310f93a.js.map",
     "787.5fd1016f.chunk.js.map": "/nfl-wins-pool-ui/static/js/787.5fd1016f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.7541eac9.js"
+    "static/js/main.3310f93a.js"
   ]
 }
