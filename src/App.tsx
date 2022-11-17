@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Standings from './Standings';
 
 import './App.css';
+import PickQuality from './PickQuality';
 
 const darkTheme = createTheme({
   palette: {
@@ -21,6 +22,7 @@ export default function App() {
       <ThemeProvider theme={darkTheme}>
       <CssBaseline />
         <Standings />
+        <PickQuality />
       </ThemeProvider>
     </Router>
   );
